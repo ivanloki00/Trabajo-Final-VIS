@@ -425,3 +425,19 @@ plot_nomad_map <- function(w_cost, w_wifi, w_safe) {
 
 plot_nomad_map(33, 33, 34)
 ```
+
+## 6.5 Análisis de Oportunidades
+
+```{r visual_bubble}
+# Gráfico de Burbujas: WiFi vs Coste (Tamaño = Felicidad)
+fig_extra <- plot_ly(df_master, 
+        x = ~`Índice de Coste`, 
+        y = ~`Velocidad Media (Mbps)`, 
+        size = ~`Puntuación de Felicidad`, 
+        color = ~Continente,
+        text = ~paste("País:", País, "<br>Felicidad:", `Puntuación de Felicidad`),
+        type = 'scatter', mode = 'markers',
+        marker = list(opacity = 0.6, sizemode = 'diameter')) %>%
+  layout(title = "Relación Coste-Internet-Felicidad por País")
+fig_extra
+```

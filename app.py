@@ -354,6 +354,32 @@ if not filtered_cities.empty:
 else:
     st.warning("No hay ciudades disponibles para los continentes seleccionados.")
 
+# --- 6.5 Análisis de Oportunidades (Bubble Chart) ---
+st.write("---")
+st.subheader("Oportunidades para el Nómada")
+st.markdown("Buscamos el equilibrio ideal: Países con **Internet rápido** (arriba), **Bajo coste** (izquierda) y **Alta felicidad** (burbujas grandes).")
+
+if not filtered_df.empty:
+    fig_bubble = px.scatter(
+        filtered_df,
+        x="Índice de Coste",
+        y="Velocidad Media (Mbps)",
+        size="Puntuación de Felicidad",
+        color="Continente",
+        hover_name="País",
+        hover_data=["Puntuación de Felicidad"],
+        title="Relación Coste-Internet-Felicidad por País",
+        size_max=40,
+        template="plotly_white",
+        opacity=0.7
+    )
+    # Mejorar tooltips (El size no se pasa directo en hoverdata a veces, ajustamos)
+    fig_bubble.update_traces(
+        hovertemplate="<b>%{hovertext}</b><br>Coste: %{x}<br>Internet: %{y} Mbps<br>Felicidad: %{marker.size}<extra></extra>"
+    )
+    
+    st.plotly_chart(fig_bubble, use_container_width=True)
+
 # --- 6. Mapa Interactivo (Nomad Score) ---
 # Nota: Como no tenemos Lat/Lon de ciudades, usaremos un mapa de países (Choropleth)
 st.divider()
