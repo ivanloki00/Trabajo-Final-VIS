@@ -1,0 +1,363 @@
+city,country,country_code,continent_code,internet_type,median_speed(mbps)
+Ar-Rayyan,Qatar,QA,AS,mobile,460.13
+Doha,Qatar,QA,AS,mobile,335.37
+Dubai,United Arab Emirates,AE,AS,mobile,330.40
+Abu Dhabi,United Arab Emirates,AE,AS,mobile,325.39
+Copenhagen,Denmark,DK,EU,mobile,268.65
+Riyadh,Saudi Arabia,SA,AS,mobile,252.25
+Porto,Portugal,PT,EU,mobile,231.43
+Oslo,Norway,NO,EU,mobile,230.46
+Lisbon,Portugal,PT,EU,mobile,225.93
+Shanghai,China,CN,AS,mobile,225.37
+Kuwait City,Kuwait,KW,AS,mobile,225.30
+Beijing,China,CN,AS,mobile,191.41
+Los Angeles,United States,US,NA,mobile,186.99
+Helsinki,Finland,FI,EU,mobile,182.11
+Stockholm,Sweden,SE,EU,mobile,180.16
+Seoul,South Korea,KR,AS,mobile,176.72
+Gothenburg,Sweden,SE,EU,mobile,175.00
+São Paulo,Brazil,BR,SA,mobile,170.57
+New York,United States,US,NA,mobile,170.48
+Antwerp,Belgium,BE,EU,mobile,169.50
+Jeddah,Saudi Arabia,SA,AS,mobile,165.54
+Vilnius,Lithuania,LT,EU,mobile,163.59
+Skopje,North Macedonia,MK,EU,mobile,160.58
+Zagreb,Croatia,HR,EU,mobile,154.93
+Paris,France,FR,EU,mobile,154.54
+Johor Bahru,Malaysia,MY,AS,mobile,149.66
+Toronto,Canada,CA,NA,mobile,138.86
+Sofia,Bulgaria,BG,EU,mobile,132.80
+Kuala Lumpur,Malaysia,MY,AS,mobile,129.42
+Riga,Latvia,LV,EU,mobile,129.30
+Lyon,France,FR,EU,mobile,125.22
+Montreal,Canada,CA,NA,mobile,122.46
+Busan,South Korea,KR,AS,mobile,122.36
+Prague,Czechia,CZ,EU,mobile,121.63
+Delhi,India,IN,AS,mobile,121.09
+Rio de Janeiro,Brazil,BR,SA,mobile,120.71
+Manama,Bahrain,BH,AS,mobile,120.22
+Rotterdam,Netherlands,NL,EU,mobile,118.46
+Zürich,Switzerland,CH,EU,mobile,114.83
+Melbourne (Greater),Australia,AU,OC,mobile,111.47
+Sydney,Australia,AU,OC,mobile,110.19
+Warsaw,Poland,PL,EU,mobile,107.64
+Thessaloniki,Greece,GR,EU,mobile,106.06
+Amsterdam,Netherlands,NL,EU,mobile,105.49
+Vienna,Austria,AT,EU,mobile,102.96
+Manchester,United Kingdom,GB,EU,mobile,102.50
+Muscat,Oman,OM,AS,mobile,100.79
+Montevideo,Uruguay,UY,SA,mobile,100.61
+Taipei,Taiwan,TW,AS,mobile,96.75
+Kraków,Poland,PL,EU,mobile,93.07
+Dublin,Ireland,IE,EU,mobile,93.00
+Athens,Greece,GR,EU,mobile,91.84
+Bucharest,Romania,RO,EU,mobile,91.30
+Geneva,Switzerland,CH,EU,mobile,90.46
+Hamburg,Germany,DE,EU,mobile,89.47
+London,United Kingdom,GB,EU,mobile,89.14
+Madrid,Spain,ES,EU,mobile,88.59
+Tel Aviv-Yafo,Israel,IL,AS,mobile,85.43
+Berlin,Germany,DE,EU,mobile,85.07
+Barcelona,Spain,ES,EU,mobile,85.06
+Brussels,Belgium,BE,EU,mobile,82.96
+Milan,Italy,IT,EU,mobile,82.19
+New Taipei,Taiwan,TW,AS,mobile,82.10
+Budapest,Hungary,HU,EU,mobile,79.27
+Almaty,Kazakhstan,KZ,AS,mobile,77.74
+Auckland,New Zealand,NZ,OC,mobile,76.26
+Mumbai,India,IN,AS,mobile,74.74
+Rome,Italy,IT,EU,mobile,71.90
+Bangkok,Thailand,TH,AS,mobile,70.89
+Haifa,Israel,IL,AS,mobile,70.84
+Harare,Zimbabwe,ZW,AF,mobile,66.65
+Belgrade,Serbia,RS,EU,mobile,65.05
+Guatemala City,Guatemala,GT,NA,mobile,64.69
+Johannesburg,South Africa,ZA,AF,mobile,63.06
+Osaka,Japan,JP,AS,mobile,60.00
+Baku,Azerbaijan,AZ,AS,mobile,59.77
+Rabat,Morocco,MA,AF,mobile,58.51
+Casablanca,Morocco,MA,AF,mobile,56.71
+Astana,Kazakhstan,KZ,AS,mobile,55.97
+Santo Domingo,Dominican Republic,DO,NA,mobile,55.56
+Manila,Philippines,PH,AS,mobile,54.55
+Santiago,Chile,CL,SA,mobile,54.00
+Cape Town,South Africa,ZA,AF,mobile,53.10
+Ho Chi Minh City,Vietnam,VN,AS,mobile,53.01
+Buenos Aires,Argentina,AR,SA,mobile,52.84
+Chon Buri,Thailand,TH,AS,mobile,52.45
+Beirut,Lebanon,LB,AS,mobile,51.20
+Chisinau,Moldova,MD,EU,mobile,49.15
+Tokyo,Japan,JP,AS,mobile,48.49
+Addis Ababa,Ethiopia,ET,AF,mobile,48.03
+Ankara,Turkey,TR,AS,mobile,46.39
+Bishkek,Kyrgyzstan,KG,AS,mobile,45.71
+Istanbul,Turkey,TR,AS,mobile,45.24
+Kampala,Uganda,UG,AF,mobile,44.62
+Moscow,Russia,RU,EU,mobile,44.46
+Tbilisi,Georgia,GE,AS,mobile,44.46
+Lagos,Nigeria,NG,AF,mobile,44.10
+Nairobi,Kenya,KE,AF,mobile,43.92
+Hanoi,Vietnam,VN,AS,mobile,43.01
+Davao City,Philippines,PH,AS,mobile,41.61
+Guadalajara,Mexico,MX,NA,mobile,40.48
+Tashkent,Uzbekistan,UZ,AS,mobile,39.88
+Mandalay,Myanmar (Burma),MM,AS,mobile,39.58
+Dar es Salaam,Tanzania,TZ,AF,mobile,39.35
+Yangon,Myanmar (Burma),MM,AS,mobile,39.07
+San Pedro Sula,Honduras,HN,NA,mobile,38.49
+Colombo,Sri Lanka,LK,AS,mobile,38.04
+Kharkiv,Ukraine,UA,EU,mobile,37.43
+Samarkand,Uzbekistan,UZ,AS,mobile,36.78
+Tehran,Iran,IR,AS,mobile,36.25
+Santiago De Los Caballeros,Dominican Republic,DO,NA,mobile,36.11
+Vientiane,Laos,LA,AS,mobile,35.81
+South Jakarta,Indonesia,ID,AS,mobile,35.76
+Mosul,Iraq,IQ,AS,mobile,34.81
+Amman,Jordan,JO,AS,mobile,34.79
+Abidjan,Côte d'Ivoire,CI,AF,mobile,34.49
+San José,Costa Rica,CR,NA,mobile,34.46
+Medellín,Colombia,CO,SA,mobile,33.62
+Mashhad,Iran,IR,AS,mobile,33.33
+Chittagong,Bangladesh,BD,AS,mobile,33.04
+Phnom Penh,Cambodia,KH,AS,mobile,33.02
+Az-Zarqa,Jordan,JO,AS,mobile,31.98
+Mexico City,Mexico,MX,NA,mobile,31.53
+Saint Petersburg,Russia,RU,EU,mobile,31.28
+Bekasi,Indonesia,ID,AS,mobile,30.82
+Baghdad,Iraq,IQ,AS,mobile,30.22
+Dhaka,Bangladesh,BD,AS,mobile,30.20
+Córdoba,Argentina,AR,SA,mobile,29.99
+San Salvador,El Salvador,SV,NA,mobile,29.84
+Tunis,Tunisia,TN,AF,mobile,29.46
+Guayaquil,Ecuador,EC,SA,mobile,29.36
+Tegucigalpa,Honduras,HN,NA,mobile,29.34
+Yerevan,Armenia,AM,AS,mobile,27.96
+Lusaka,Zambia,ZM,AF,mobile,27.22
+Algiers,Algeria,DZ,AF,mobile,27.19
+Sfax,Tunisia,TN,AF,mobile,27.01
+Cairo,Egypt,EG,AF,mobile,26.08
+Bogotá,Colombia,CO,SA,mobile,25.96
+Maputo,Mozambique,MZ,AF,mobile,23.93
+Oran,Algeria,DZ,AF,mobile,23.66
+Quito,Ecuador,EC,SA,mobile,23.45
+Managua,Nicaragua,NI,NA,mobile,22.83
+Minsk,Belarus,BY,EU,mobile,22.48
+Damascus,Syria,SY,AS,mobile,21.84
+Lahore,Pakistan,PK,AS,mobile,21.41
+Alexandria,Egypt,EG,AF,mobile,21.29
+Lima,Peru,PE,SA,mobile,20.32
+Accra,Ghana,GH,AF,mobile,18.93
+Karachi,Pakistan,PK,AS,mobile,18.85
+Panama City,Panama,PA,NA,mobile,18.75
+Luanda,Angola,AO,AF,mobile,18.48
+Aleppo,Syria,SY,AS,mobile,17.91
+Asuncion,Paraguay,PY,SA,mobile,16.85
+Tripoli,Libya,LY,AF,mobile,16.82
+Kiev,Ukraine,UA,EU,mobile,16.81
+Dushanbe,Tajikistan,TJ,AS,mobile,15.86
+Sana'a,Yemen,YE,AS,mobile,15.77
+Caracas,Venezuela,VE,SA,mobile,15.76
+Arequipa,Peru,PE,SA,mobile,14.91
+Misrata,Libya,LY,AF,mobile,14.19
+Gomel,Belarus,BY,EU,mobile,13.77
+Ulaanbaatar,Mongolia,MN,AS,mobile,13.41
+Santa Cruz de la Sierra,Bolivia,BO,SA,mobile,11.78
+La Paz,Bolivia,BO,SA,mobile,9.15
+Kabul,Afghanistan,AF,AS,mobile,7.77
+Havana,Cuba,CU,NA,mobile,4.12
+Valparaíso,Chile,CL,SA,fixed_broadband,311.53
+Abu Dhabi,United Arab Emirates,AE,AS,fixed_broadband,308.52
+Shanghai,China,CN,AS,fixed_broadband,303.23
+Lyon,France,FR,EU,fixed_broadband,289.57
+Beijing,China,CN,AS,fixed_broadband,288.33
+New York,United States,US,NA,fixed_broadband,269.10
+Bucharest,Romania,RO,EU,fixed_broadband,262.13
+Bangkok,Thailand,TH,AS,fixed_broadband,255.52
+Ar-Rayyan,Qatar,QA,AS,fixed_broadband,249.97
+Zürich,Switzerland,CH,EU,fixed_broadband,241.03
+New Taipei,Taiwan,TW,AS,fixed_broadband,235.78
+Chon Buri,Thailand,TH,AS,fixed_broadband,232.47
+Madrid,Spain,ES,EU,fixed_broadband,232.44
+Toronto,Canada,CA,NA,fixed_broadband,232.36
+Los Angeles,United States,US,NA,fixed_broadband,229.69
+Barcelona,Spain,ES,EU,fixed_broadband,229.65
+Copenhagen,Denmark,DK,EU,fixed_broadband,228.34
+Dubai,United Arab Emirates,AE,AS,fixed_broadband,222.95
+Geneva,Switzerland,CH,EU,fixed_broadband,218.61
+Budapest,Hungary,HU,EU,fixed_broadband,217.62
+Tokyo,Japan,JP,AS,fixed_broadband,207.60
+Taipei,Taiwan,TW,AS,fixed_broadband,199.11
+Kraków,Poland,PL,EU,fixed_broadband,189.06
+Rotterdam,Netherlands,NL,EU,fixed_broadband,188.79
+Haifa,Israel,IL,AS,fixed_broadband,188.30
+Auckland,New Zealand,NZ,OC,fixed_broadband,188.08
+Rio de Janeiro,Brazil,BR,SA,fixed_broadband,187.01
+Tel Aviv-Yafo,Israel,IL,AS,fixed_broadband,186.38
+Porto,Portugal,PT,EU,fixed_broadband,184.68
+Santiago,Chile,CL,SA,fixed_broadband,183.99
+Lima,Peru,PE,SA,fixed_broadband,183.37
+São Paulo,Brazil,BR,SA,fixed_broadband,181.94
+Oslo,Norway,NO,EU,fixed_broadband,180.61
+Paris,France,FR,EU,fixed_broadband,180.05
+Stockholm,Sweden,SE,EU,fixed_broadband,178.35
+Montevideo,Uruguay,UY,SA,fixed_broadband,177.57
+Milan,Italy,IT,EU,fixed_broadband,177.09
+Bogotá,Colombia,CO,SA,fixed_broadband,174.59
+Warsaw,Poland,PL,EU,fixed_broadband,173.76
+Vilnius,Lithuania,LT,EU,fixed_broadband,169.95
+Seoul,South Korea,KR,AS,fixed_broadband,167.72
+Chisinau,Moldova,MD,EU,fixed_broadband,165.81
+Ho Chi Minh City,Vietnam,VN,AS,fixed_broadband,164.93
+Johor Bahru,Malaysia,MY,AS,fixed_broadband,162.07
+Gothenburg,Sweden,SE,EU,fixed_broadband,158.32
+Amsterdam,Netherlands,NL,EU,fixed_broadband,154.39
+Amman,Jordan,JO,AS,fixed_broadband,154.30
+Montreal,Canada,CA,NA,fixed_broadband,152.89
+Doha,Qatar,QA,AS,fixed_broadband,152.43
+Arequipa,Peru,PE,SA,fixed_broadband,151.15
+Az-Zarqa,Jordan,JO,AS,fixed_broadband,150.62
+Medellín,Colombia,CO,SA,fixed_broadband,149.75
+Dublin,Ireland,IE,EU,fixed_broadband,149.21
+Kuwait City,Kuwait,KW,AS,fixed_broadband,148.31
+Panama City,Panama,PA,NA,fixed_broadband,146.69
+Riyadh,Saudi Arabia,SA,AS,fixed_broadband,146.67
+Osaka,Japan,JP,AS,fixed_broadband,137.65
+Kuala Lumpur,Malaysia,MY,AS,fixed_broadband,133.60
+Lisbon,Portugal,PT,EU,fixed_broadband,127.31
+Vienna,Austria,AT,EU,fixed_broadband,121.68
+Manchester,United Kingdom,GB,EU,fixed_broadband,118.79
+Zagreb,Croatia,HR,EU,fixed_broadband,117.16
+Busan,South Korea,KR,AS,fixed_broadband,116.99
+Buenos Aires,Argentina,AR,SA,fixed_broadband,114.01
+Rome,Italy,IT,EU,fixed_broadband,112.20
+Riga,Latvia,LV,EU,fixed_broadband,111.41
+Hanoi,Vietnam,VN,AS,fixed_broadband,109.93
+London,United Kingdom,GB,EU,fixed_broadband,109.40
+Jeddah,Saudi Arabia,SA,AS,fixed_broadband,108.81
+Guayaquil,Ecuador,EC,SA,fixed_broadband,106.60
+Port of Spain,Trinidad and Tobago,TT,NA,fixed_broadband,106.45
+San José,Costa Rica,CR,NA,fixed_broadband,104.29
+Belgrade,Serbia,RS,EU,fixed_broadband,103.12
+Helsinki,Finland,FI,EU,fixed_broadband,102.22
+Moscow,Russia,RU,EU,fixed_broadband,94.64
+Hamburg,Germany,DE,EU,fixed_broadband,94.46
+Quito,Ecuador,EC,SA,fixed_broadband,94.16
+Davao City,Philippines,PH,AS,fixed_broadband,93.70
+Kiev,Ukraine,UA,EU,fixed_broadband,93.38
+Maracaibo,Venezuela,VE,SA,fixed_broadband,93.24
+Asuncion,Paraguay,PY,SA,fixed_broadband,92.38
+Saint Petersburg,Russia,RU,EU,fixed_broadband,92.19
+Antwerp,Belgium,BE,EU,fixed_broadband,91.34
+Kathmandu,Nepal,NP,AS,fixed_broadband,90.99
+Muscat,Oman,OM,AS,fixed_broadband,88.90
+Manila,Philippines,PH,AS,fixed_broadband,88.83
+Brussels,Belgium,BE,EU,fixed_broadband,88.58
+Delhi,India,IN,AS,fixed_broadband,88.05
+Berlin,Germany,DE,EU,fixed_broadband,87.78
+Sofia,Bulgaria,BG,EU,fixed_broadband,87.50
+Córdoba,Argentina,AR,SA,fixed_broadband,87.43
+Kharkiv,Ukraine,UA,EU,fixed_broadband,86.91
+Guadalajara,Mexico,MX,NA,fixed_broadband,85.20
+Mexico City,Mexico,MX,NA,fixed_broadband,84.77
+Prague,Czechia,CZ,EU,fixed_broadband,83.86
+Manama,Bahrain,BH,AS,fixed_broadband,81.81
+Alexandria,Egypt,EG,AF,fixed_broadband,77.89
+Melbourne (Greater),Australia,AU,OC,fixed_broadband,77.81
+Kingston,Jamaica,JM,NA,fixed_broadband,77.77
+Minsk,Belarus,BY,EU,fixed_broadband,76.56
+Sydney,Australia,AU,OC,fixed_broadband,75.63
+Yerevan,Armenia,AM,AS,fixed_broadband,69.11
+Tashkent,Uzbekistan,UZ,AS,fixed_broadband,67.61
+Ulaanbaatar,Mongolia,MN,AS,fixed_broadband,67.55
+Bishkek,Kyrgyzstan,KG,AS,fixed_broadband,66.55
+Abidjan,Côte d'Ivoire,CI,AF,fixed_broadband,65.04
+Thessaloniki,Greece,GR,EU,fixed_broadband,62.96
+Almaty,Kazakhstan,KZ,AS,fixed_broadband,61.76
+Astana,Kazakhstan,KZ,AS,fixed_broadband,61.27
+Cairo,Egypt,EG,AF,fixed_broadband,60.46
+Mumbai,India,IN,AS,fixed_broadband,58.97
+Johannesburg,South Africa,ZA,AF,fixed_broadband,58.39
+Gomel,Belarus,BY,EU,fixed_broadband,58.06
+Guatemala City,Guatemala,GT,NA,fixed_broadband,55.92
+San Salvador,El Salvador,SV,NA,fixed_broadband,55.92
+Managua,Nicaragua,NI,NA,fixed_broadband,54.75
+Santo Domingo,Dominican Republic,DO,NA,fixed_broadband,54.56
+Istanbul,Turkey,TR,AS,fixed_broadband,54.44
+Samarkand,Uzbekistan,UZ,AS,fixed_broadband,53.97
+Cape Town,South Africa,ZA,AF,fixed_broadband,52.25
+Athens,Greece,GR,EU,fixed_broadband,51.94
+Dhaka,Bangladesh,BD,AS,fixed_broadband,51.29
+Skopje,North Macedonia,MK,EU,fixed_broadband,50.74
+San Pedro Sula,Honduras,HN,NA,fixed_broadband,50.49
+Tegucigalpa,Honduras,HN,NA,fixed_broadband,50.08
+Antananarivo,Madagascar,MG,AF,fixed_broadband,48.68
+Phnom Penh,Cambodia,KH,AS,fixed_broadband,48.08
+Ankara,Turkey,TR,AS,fixed_broadband,46.65
+Kinshasa,DR Congo,CD,AF,fixed_broadband,46.49
+Ouagadougou,Burkina Faso,BF,AF,fixed_broadband,45.92
+Brazzaville,Congo,CG,AF,fixed_broadband,44.05
+Caracas,Venezuela,VE,SA,fixed_broadband,43.70
+South Jakarta,Indonesia,ID,AS,fixed_broadband,42.74
+Pointe-Noire,Congo,CG,AF,fixed_broadband,42.71
+Vientiane,Laos,LA,AS,fixed_broadband,42.49
+Chittagong,Bangladesh,BD,AS,fixed_broadband,42.04
+Baku,Azerbaijan,AZ,AS,fixed_broadband,40.60
+Kigali,Rwanda,RW,AF,fixed_broadband,40.23
+Libreville,Gabon,GA,AF,fixed_broadband,39.96
+Baghdad,Iraq,IQ,AS,fixed_broadband,36.57
+Port-au-Prince,Haiti,HT,NA,fixed_broadband,35.96
+Bekasi,Indonesia,ID,AS,fixed_broadband,35.93
+Santa Cruz de la Sierra,Bolivia,BO,SA,fixed_broadband,35.77
+Rabat,Morocco,MA,AF,fixed_broadband,35.56
+Accra,Ghana,GH,AF,fixed_broadband,35.41
+Casablanca,Morocco,MA,AF,fixed_broadband,35.03
+Dushanbe,Tajikistan,TJ,AS,fixed_broadband,35.02
+La Paz,Bolivia,BO,SA,fixed_broadband,32.81
+Lagos,Nigeria,NG,AF,fixed_broadband,31.32
+Dakar,Senegal,SN,AF,fixed_broadband,31.14
+Santiago De Los Caballeros,Dominican Republic,DO,NA,fixed_broadband,31.06
+Lome,Togo,TG,AF,fixed_broadband,31.06
+Tbilisi,Georgia,GE,AS,fixed_broadband,27.69
+Cotonou,Benin,BJ,AF,fixed_broadband,27.43
+Bamako,Mali,ML,AF,fixed_broadband,25.30
+Nouakchott,Mauritania,MR,AF,fixed_broadband,24.96
+Lilongwe,Malawi,MW,AF,fixed_broadband,24.38
+Mandalay,Myanmar (Burma),MM,AS,fixed_broadband,23.88
+Mosul,Iraq,IQ,AS,fixed_broadband,23.10
+Algiers,Algeria,DZ,AF,fixed_broadband,22.63
+Freetown,Sierra Leone,SL,AF,fixed_broadband,22.17
+Yangon,Myanmar (Burma),MM,AS,fixed_broadband,20.98
+Lusaka,Zambia,ZM,AF,fixed_broadband,19.81
+Dar es Salaam,Tanzania,TZ,AF,fixed_broadband,19.73
+Luanda,Angola,AO,AF,fixed_broadband,19.70
+Karachi,Pakistan,PK,AS,fixed_broadband,18.81
+Mogadishu,Somalia,SO,AF,fixed_broadband,18.65
+Colombo,Sri Lanka,LK,AS,fixed_broadband,17.54
+Djibouti,Djibouti,DJ,AF,fixed_broadband,17.44
+Kampala,Uganda,UG,AF,fixed_broadband,16.55
+Maputo,Mozambique,MZ,AF,fixed_broadband,16.32
+Tehran,Iran,IR,AS,fixed_broadband,15.93
+Lahore,Pakistan,PK,AS,fixed_broadband,15.77
+Bulawayo,Zimbabwe,ZW,AF,fixed_broadband,14.40
+Harare,Zimbabwe,ZW,AF,fixed_broadband,14.09
+Nairobi,Kenya,KE,AF,fixed_broadband,13.87
+Mashhad,Iran,IR,AS,fixed_broadband,13.83
+Oran,Algeria,DZ,AF,fixed_broadband,13.30
+Douala,Cameroon,CM,AF,fixed_broadband,12.84
+Mombasa,Kenya,KE,AF,fixed_broadband,11.77
+Beirut,Lebanon,LB,AS,fixed_broadband,11.77
+Tripoli,Libya,LY,AF,fixed_broadband,10.97
+Tunis,Tunisia,TN,AF,fixed_broadband,10.44
+Hargeisa,Somalia,SO,AF,fixed_broadband,9.97
+Sfax,Tunisia,TN,AF,fixed_broadband,9.86
+Yaounde,Cameroon,CM,AF,fixed_broadband,9.86
+Conakry,Guinea,GN,AF,fixed_broadband,9.72
+Misrata,Libya,LY,AF,fixed_broadband,9.60
+Addis Ababa,Ethiopia,ET,AF,fixed_broadband,8.93
+Monrovia,Liberia,LR,AF,fixed_broadband,7.46
+Ashgabat,Turkmenistan,TM,AS,fixed_broadband,6.45
+Sana'a,Yemen,YE,AS,fixed_broadband,5.98
+Aden,Yemen,YE,AS,fixed_broadband,5.45
+Herat,Afghanistan,AF,AS,fixed_broadband,3.38
+Kabul,Afghanistan,AF,AS,fixed_broadband,3.36
+Havana,Cuba,CU,NA,fixed_broadband,2.75

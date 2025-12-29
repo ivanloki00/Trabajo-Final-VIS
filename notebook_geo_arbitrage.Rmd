@@ -1,0 +1,427 @@
+---
+title: "Geo-Arbitrage: Dónde vivir como un Nómada Digital"
+author: "Ivan"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(plotly)
+```
+
+# Geo-Arbitrage: Dónde vivir como un Nómada Digital
+
+## 1. La Pregunta
+**Hipótesis:** ¿Dónde maximiza su calidad de vida un joven trabajador remoto?  
+Buscamos identificar países con alta calidad de vida, buena infraestructura de internet y bajo coste, asumiendo un salario 'Tech/Remoto' global.
+
+## 2. Adquisición de Datos
+Cargamos los 4 datasets principales desde la carpeta `datasets`.
+
+```{r load_data}
+# Rutas a los datasets
+files <- list(
+  cost = "datasets/Cost_of_Living_Index_by_Country_2024.csv",
+  salaries = "datasets/data_science_salaries.csv",
+  internet = "datasets/internet_speed_by_city_may2024.csv",
+  happiness = "datasets/World-happiness-report-2024.csv"
+)
+
+# Carga de DataFrames
+df_cost <- read_csv(files$cost)
+df_salaries <- read_csv(files$salaries)
+df_internet <- read_csv(files$internet)
+df_happiness <- read_csv(files$happiness)
+
+# Vista previa rápida
+glimpse(df_cost)
+glimpse(df_salaries)
+glimpse(df_internet)
+glimpse(df_happiness)
+```
+
+## 3. Formateado y Limpieza
+El mayor reto es que cada dataset puede tener nombres de países diferentes (ej: 'USA' vs 'United States').  
+Vamos a normalizar todos los nombres de países a un estándar común (basado en el dataset de Coste de Vida).
+
+```{r cleaning}
+# Renombrar columnas
+df_cost <- df_cost %>% rename(País = Country)
+df_happiness <- df_happiness %>% rename(País = `Country name`)
+df_internet <- df_internet %>% rename(País = country)
+
+# Para salaries, crear columna País desde employee_residence
+df_salaries <- df_salaries %>% mutate(País = employee_residence)
+
+# Definir mapa de corrección manual
+country_map <- c(
+  "United States" = "United States",
+  "US" = "United States",
+  "USA" = "United States",
+  "United Kingdom" = "United Kingdom",
+  "UK" = "United Kingdom",
+  "Great Britain" = "United Kingdom",
+  "Viet Nam" = "Vietnam",
+  "Russian Federation" = "Russia"
+)
+
+# Función de limpieza (usando recode de dplyr)
+# Nota: recode funciona bien cuando los valores coinciden exactamente.
+# Si el valor no está en el vector, recode suele devolver NA o requiere .default.
+# Aquí usaremos una lógica vectorizada más robusta similar al .get() de Python.
+
+clean_country <- function(name) {
+  name <- str_trim(name)
+  if (name %in% names(country_map)) {
+    return(country_map[name])
+  } else {
+    return(name) # Devuelve el original si no está en el mapa
+  }
+}
+
+# Aplicar limpieza. Usamos map_chr para aplicar la función elemento a elemento o case_match si fuera directo
+# Dado que country_map es una lista de reemplazos específicos:
+df_cost <- df_cost %>% mutate(País = sapply(País, clean_country))
+df_happiness <- df_happiness %>% mutate(País = sapply(País, clean_country))
+df_internet <- df_internet %>% mutate(País = sapply(País, clean_country))
+df_salaries <- df_salaries %>% mutate(País = sapply(País, clean_country))
+
+print("Limpieza completada. Columnas 'País' creadas y normalizadas.")
+```
+
+## 4. Agregación y Minado de Datos
+Ahora comprimiremos los datasets para tener 1 fila por País.
+
+```{r aggregation}
+# 4.1 Salarios: Mediana de salario en USD por país
+df_salaries_agg <- df_salaries %>%
+  group_by(País) %>%
+  summarise(`Salario Local (USD)` = median(salary_in_usd, na.rm = TRUE))
+
+# 4.2 Internet: Velocidad mediana por país
+df_internet_agg <- df_internet %>%
+  group_by(País) %>%
+  summarise(`Velocidad Media (Mbps)` = median(`median_speed(mbps)`, na.rm = TRUE))
+
+# 4.3 Merge final (Left Join)
+df_master <- df_cost %>%
+  left_join(df_salaries_agg, by = "País") %>%
+  left_join(df_internet_agg, by = "País") %>%
+  left_join(df_happiness %>% select(País, `Ladder score`, `Regional indicator`), by = "País")
+
+# Renombrar columnas finales
+df_master <- df_master %>%
+  rename(
+    `Puntuación de Felicidad` = `Ladder score`,
+    `Índice de Coste` = `Cost of Living Index`,
+    `Región` = `Regional indicator`,
+    `Índice Restaurantes` = `Restaurant Price Index`
+  )
+
+# Imputar salarios nulos con la Mediana Global
+global_median_salary <- median(df_salaries$salary_in_usd, na.rm = TRUE)
+df_master <- df_master %>%
+  mutate(`Salario Imputado` = ifelse(is.na(`Salario Local (USD)`), global_median_salary, `Salario Local (USD)`))
+```
+
+## 5. Ingeniería de Características (Feature Engineering)
+Creamos las nuevas métricas solicitadas.
+
+```{r feature_engineering}
+# 5.1 Rentabilidad Nómada
+df_master <- df_master %>%
+  mutate(`Puntuación Nómada` = round(`Salario Imputado` / `Índice de Coste`, 2))
+
+# 5.2 Índice Cerveza
+# Precio Base NY (Index 100) = $8.00
+df_master <- df_master %>%
+  mutate(
+    `Precio Est. Cerveza` = (`Índice Restaurantes` / 100) * 8.00,
+    `Salario por Hora` = `Salario Imputado` / 2080,
+    `Índice Cerveza` = round(`Salario por Hora` / `Precio Est. Cerveza`, 1)
+  )
+
+# Definir función get_continent usando case_when
+df_master <- df_master %>%
+  mutate(Continente = case_when(
+    País %in% c('United States', 'Canada', 'Mexico') | str_detect(País, "\\(US\\)") ~ 'América del Norte',
+    Región == 'North America and ANZ' & País %in% c('Australia', 'New Zealand') ~ 'Australia/Oceanía',
+    Región == 'Latin America and Caribbean' ~ 'América del Sur',
+    Región %in% c('Western Europe', 'Central and Eastern Europe', 'Commonwealth of Independent States') ~ 'Europa',
+    Región %in% c('East Asia', 'Southeast Asia', 'South Asia') ~ 'Asia',
+    Región == 'Sub-Saharan Africa' ~ 'África',
+    Región == 'Middle East and North Africa' & País %in% c('Algeria', 'Djibouti', 'Egypt', 'Libya', 'Morocco', 'Sudan', 'Tunisia', 'Mauritania', 'Somalia') ~ 'África',
+    Región == 'Middle East and North Africa' ~ 'Asia', # Israel, UAE, etc.
+    TRUE ~ 'Otros'
+  ))
+
+# Función augment_us_data simulada
+augment_us_data <- function(df_main) {
+  tryCatch({
+    df_cities <- read_csv('datasets/livable_cities.csv')
+    # Filtrar y limpiar
+    df_us_cities <- df_cities %>%
+      filter(Country == 'UnitedStates') %>%
+      mutate(State = case_match(City,
+        'Austin' ~ 'Texas', 'Dallas' ~ 'Texas', 'San Antonio' ~ 'Texas', 'Houston' ~ 'Texas',
+        'Seattle' ~ 'Washington',
+        'Tampa' ~ 'Florida', 'Miami' ~ 'Florida',
+        'San Diego' ~ 'California', 'San Francisco' ~ 'California', 'Los Angeles' ~ 'California',
+        'Portland' ~ 'Oregon',
+        'Atlanta' ~ 'Georgia',
+        'Boston' ~ 'Massachusetts',
+        'Denver' ~ 'Colorado',
+        'Washington' ~ 'District of Columbia',
+        'Phoenix' ~ 'Arizona',
+        'Las Vegas' ~ 'Nevada',
+        'Chicago' ~ 'Illinois',
+        'New York' ~ 'New York',
+        .default = NA_character_
+      )) %>%
+      filter(!is.na(State))
+    
+    # Agrupar por estado
+    df_states <- df_us_cities %>%
+      group_by(State) %>%
+      summarise(Cost_of_Living_Index = mean(`Cost of Living Index`, na.rm = TRUE))
+    
+    # Fila base de US
+    us_row <- df_main %>% filter(País == 'United States') %>% slice(1)
+    
+    if(nrow(us_row) == 0) return(df_main)
+    
+    # Generar nuevas filas
+    new_rows <- df_states %>%
+      rowwise() %>%
+      do({
+        state_name <- paste0(.$State, " (US)")
+        # Simulación simple de aleatoriedad determinista
+        set.seed(nchar(state_name)) 
+        
+        row <- us_row
+        row$País <- state_name
+        row$`Índice de Coste` <- .$Cost_of_Living_Index
+        
+        # Variaciones
+        row$`Puntuación de Felicidad` <- pmax(pmin(row$`Puntuación de Felicidad` + runif(1, -0.5, 0.5), 10), 0)
+        row$`Velocidad Media (Mbps)` <- pmax(row$`Velocidad Media (Mbps)` + runif(1, -50, 50), 10)
+        row$`Salario Local (USD)` <- pmax(row$`Salario Local (USD)` * (1 + runif(1, -0.2, 0.2)), 20000)
+        row$`Salario Imputado` <- row$`Salario Local (USD)`
+        
+        # Recálculos
+        row$`Puntuación Nómada` <- round(row$`Salario Imputado` / row$`Índice de Coste`, 2)
+        est_beer_price <- (row$`Índice de Coste` / 100) * 8.00
+        hourly <- row$`Salario Imputado` / 2080
+        row$`Índice Cerveza` <- round(hourly / est_beer_price, 1)
+        row$Continente <- 'América del Norte' # Asumimos directo
+        
+        as_tibble(row)
+      }) %>%
+      ungroup()
+    
+    bind_rows(df_main, new_rows)
+    
+  }, error = function(e) {
+    print(paste("Error aumentando datos de USA:", e$message))
+    return(df_main)
+  })
+}
+
+# Aplicar Aumentación
+df_master <- augment_us_data(df_master)
+
+print("Distribución por Continente:")
+print(table(df_master$Continente))
+```
+
+## 6. Visualizaciones del Dashboard
+
+```{r visuals}
+# Filtrar para evitar NAs en continente si los hay
+filtered_df <- df_master %>% filter(!is.na(Continente))
+
+# 1. Panorama de Costes (Violin Plot)
+fig_violin <- plot_ly(
+  data = filtered_df,
+  x = ~Continente,
+  y = ~`Índice de Coste`,
+  type = 'violin',
+  box = list(visible = TRUE),
+  points = 'all',
+  color = ~Continente,
+  hoverinfo = 'text',
+  text = ~paste("<b>País: ", País, "</b><br>",
+                "Índice de Coste: ", `Índice de Coste`, "<br>",
+                "Continente: ", Continente)
+) %>%
+  layout(title = "Distribución de Costes por Continente",
+         yaxis = list(title = "Índice de Coste"),
+         xaxis = list(title = "Continente"))
+
+fig_violin
+```
+
+```{r visual_lollipop}
+# 2. Lollipop Chart
+top_internet <- filtered_df %>%
+  arrange(desc(`Velocidad Media (Mbps)`)) %>%
+  slice(1:15) %>%
+  arrange(`Velocidad Media (Mbps)`) # Ordenar para el plot
+
+# Factorizar País para mantener el orden en el gráfico
+top_internet$País <- factor(top_internet$País, levels = unique(top_internet$País))
+
+fig_lolly <- plot_ly() %>%
+  add_segments(
+    data = top_internet,
+    x = 0, xend = ~`Velocidad Media (Mbps)`,
+    y = ~País, yend = ~País,
+    line = list(color = 'gray', width = 1),
+    showlegend = FALSE
+  ) %>%
+  add_markers(
+    data = top_internet,
+    x = ~`Velocidad Media (Mbps)`,
+    y = ~País,
+    marker = list(
+      size = 12,
+      color = ~`Índice de Coste`,
+      colorscale = 'RdYlGn',
+      reversescale = TRUE,
+      showscale = FALSE
+    ),
+    text = ~`Índice de Coste`,
+    hoverinfo = 'text',
+    hovertemplate = '<b>%{y}</b><br>Speed: %{x} Mbps<br>Cost Index: %{text}<extra></extra>'
+  ) %>%
+  layout(
+    title = "Top 15: Velocidad WiFi vs Coste",
+    xaxis = list(title = "Velocidad (Mbps)"),
+    yaxis = list(title = "", type = "category"),
+    height = 600
+  )
+
+fig_lolly
+```
+
+```{r visual_scatter_auras}
+# 3. Scatter Plot con 'Auras' (Convex Hull)
+
+# Simulamos filtro y preparamos datos
+selected_continents <- c('América del Norte', 'Asia', 'Europa')
+# Usamos df_master como filtered_cities para simplicidad en este bloque
+filtered_cities <- df_master %>%
+  filter(Continente %in% selected_continents) %>%
+  rename(
+    City = País, # Usamos País como "City" según el contexto del notebook original
+    `Cost of Living Index` = `Índice de Coste`,
+    `Quality of Life Index` = `Puntuación de Felicidad` # Aproximación, notebook original usaba otro df? Reviso notebook: usa Quality but en df_master solo tengo Happiness. Usaré Happiness como Quality para el ejemplo
+  )
+# Nota: En el notebook original 'Quality of Life Index' parecía venir de un df_cities externo o calculado. 
+# En df_master tenemos `Puntuación de Felicidad`. Usaremos eso como proxy.
+
+fig_scatter <- plot_ly()
+
+# Colores fijos para consistencia
+colors_pal <- RColorBrewer::brewer.pal(length(unique(filtered_cities$Continente)), "Dark2")
+names(colors_pal) <- unique(filtered_cities$Continente)
+
+# Auras
+for(cont in unique(filtered_cities$Continente)) {
+  subset_data <- filtered_cities %>% filter(Continente == cont)
+  
+  if(nrow(subset_data) >= 3) {
+    # Convex Hull
+    hull_idx <- chull(subset_data$`Cost of Living Index`, subset_data$`Quality of Life Index`)
+    hull_idx <- c(hull_idx, hull_idx[1]) # Cerrar loop
+    hull_pts <- subset_data[hull_idx, ]
+    
+    fig_scatter <- fig_scatter %>%
+      add_trace(
+        data = hull_pts,
+        x = ~`Cost of Living Index`,
+        y = ~`Quality of Life Index`,
+        type = 'scatter',
+        mode = 'lines',
+        fill = 'toself',
+        fillcolor = colors_pal[cont],
+        line = list(color = colors_pal[cont], width = 0),
+        opacity = 0.2,
+        hoverinfo = 'skip',
+        showlegend = FALSE
+      )
+  }
+}
+
+# Puntos Scatter
+fig_scatter <- fig_scatter %>%
+  add_trace(
+    data = filtered_cities,
+    x = ~`Cost of Living Index`,
+    y = ~`Quality of Life Index`,
+    type = 'scatter',
+    mode = 'markers',
+    color = ~Continente,
+    colors = colors_pal,
+    symbol = ~Continente,
+    text = ~paste("País:", City, "<br>Coste:", `Cost of Living Index`, "<br>Calidad:", `Quality of Life Index`),
+    hoverinfo = "text",
+    marker = list(size = 10, opacity = 0.9)
+  ) %>%
+  layout(
+    title = paste("Calidad vs Coste (", paste(selected_continents, collapse=", "), ")"),
+    xaxis = list(title = "Coste de Vida"),
+    yaxis = list(title = "Calidad de Vida (Felicidad)"),
+    height = 600,
+    legend = list(title = list(text = "Continente"))
+  )
+
+fig_scatter
+```
+
+```{r visual_map}
+# 4. Mapa Nómada
+plot_nomad_map <- function(w_cost, w_wifi, w_safe) {
+  df_map <- df_master %>% filter(!is.na(Continente)) # Usamos df_master
+  
+  total <- w_cost + w_wifi + w_safe
+  if(total == 0) total <- 1
+  
+  # Normalización sencilla min-max
+  norm <- function(x) { (x - min(x, na.rm=TRUE)) / (max(x, na.rm=TRUE) - min(x, na.rm=TRUE)) }
+  
+  df_map <- df_map %>%
+    mutate(
+      cost_norm = norm(`Índice de Coste`),
+      wifi_norm = norm(`Velocidad Media (Mbps)`),
+      safe_norm = norm(`Puntuación de Felicidad`),
+      Personal_Score = ((w_cost * (1 - cost_norm)) + (w_wifi * wifi_norm) + (w_safe * safe_norm)) / total * 100
+    )
+  
+  fig_map <- plot_ly(
+    data = df_map,
+    type = 'choropleth',
+    locations = ~País,
+    locationmode = 'country names',
+    z = ~Personal_Score,
+    text = ~País,
+    colors = 'RdYlGn',
+    marker = list(line = list(color = 'rgb(255,255,255)', width = 0.5))
+  ) %>%
+    layout(
+      title = paste("Mapa Nómada (Pesos:", w_cost, "/", w_wifi, "/", w_safe, ")"),
+      geo = list(
+        showframe = FALSE,
+        showcoastlines = FALSE,
+        projection = list(type = 'natural earth')
+      ),
+      height = 800,
+      margin = list(l=0, r=0, t=50, b=0)
+    )
+  
+  return(fig_map)
+}
+
+plot_nomad_map(33, 33, 34)
+```
