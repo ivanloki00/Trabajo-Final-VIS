@@ -188,8 +188,7 @@ st.sidebar.markdown("Personaliza tu búsqueda del paraíso.")
 all_continents = sorted([c for c in df['Continente'].unique() if c != 'Otros'])
 selected_continents = st.sidebar.multiselect("Continente", all_continents, default=["América del Norte", "Asia"])
 
-# 3.2 Slider de Salario Nómada (Dinámico)
-nomad_salary = st.sidebar.number_input("Tu Salario Mensual ($USD)", min_value=1000, value=3000, step=500)
+
 
 # Filtrado
 filtered_df = df[
@@ -223,6 +222,8 @@ fig_violin = px.violin(filtered_df,
 fig_violin.update_traces(
     hoveron="points", 
     hovertemplate="<b>País: %{customdata[0]}</b><br>Índice de Coste: %{y}<br>Continente: %{x}<br><extra></extra>")
+
+fig_violin.update_layout(font=dict(size=14))
 
 st.plotly_chart(fig_violin, use_container_width=True)
 
@@ -301,7 +302,8 @@ if not filtered_cities.empty:
     fig_final.update_layout(
         xaxis_title="Coste de Vida",
         yaxis_title="Calidad de Vida",
-        height=600
+        height=600,
+        font=dict(size=14)
     )
 
     col1, col2 = st.columns(2)
@@ -345,7 +347,8 @@ if not filtered_cities.empty:
                 xaxis_title="Velocidad (Mbps)",
                 yaxis=dict(type='category'),
                 margin=dict(l=0, r=0, t=30, b=0),
-                height=600 # Align height roughly with scatter
+                height=600, # Align height roughly with scatter
+                font=dict(size=14)
             )
             
             st.plotly_chart(fig_lolly, use_container_width=True)
@@ -377,6 +380,7 @@ if not filtered_df.empty:
     fig_bubble.update_traces(
         hovertemplate="<b>%{hovertext}</b><br>Coste: %{x}<br>Internet: %{y} Mbps<br>Felicidad: %{marker.size}<extra></extra>"
     )
+    fig_bubble.update_layout(font=dict(size=14))
     
     st.plotly_chart(fig_bubble, use_container_width=True)
 
@@ -459,7 +463,8 @@ fig_nomad_map = px.choropleth(
 fig_nomad_map.update_layout(
     margin=dict(l=0, r=0, t=0, b=0),
     geo=dict(bgcolor='rgba(0,0,0,0)'),
-    height=800
+    height=800,
+    font=dict(size=14)
 )
 
 st.plotly_chart(fig_nomad_map, use_container_width=True)
